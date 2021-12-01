@@ -1,5 +1,13 @@
 #include "Entity.h"
 
+Entity::Entity()
+{
+	m_icon = '\0';
+	m_health = 0;
+	m_attackPower = 0;
+	m_defensePower = 0;
+}
+
 //Include entity constructor and includes a defenition
 Entity::Entity(char icon, float health, float attackPower, float defensePower)
 {
