@@ -1,5 +1,7 @@
 #include "Entity.h"
+#include <iostream>
 
+//The defualt for all entities
 Entity::Entity()
 {
 	m_icon = '\0';
@@ -37,4 +39,13 @@ float Entity::takeDamage(float damageAmount)
 float Entity::attack(Entity* entity)
 {
 	return entity->takeDamage(getAttackPower());
+}
+
+//Displays the entities stats
+void Entity::printStats()
+{
+	std::cout << m_icon << std::endl;
+	std::cout << "Health: " << getHealth() << std::endl;
+	std::cout << "Attack Power: " << getAttackPower() << std::endl;
+	std::cout << "Defense Power: " << getDefensePower() << std::endl;
 }
