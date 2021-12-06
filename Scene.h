@@ -6,7 +6,7 @@ public:
 	Scene();
 	~Scene();
 	bool getStarted();
-	void addActot(Actor* actor);
+	void addActor(Actor* actor);
 	bool removeActor(Actor* actor);
 
 	virtual void start();
