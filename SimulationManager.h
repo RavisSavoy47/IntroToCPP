@@ -10,6 +10,7 @@ public:
 
 	void start() override;
 	void update() override;
+	void draw() override;
 
 private:
 	Entity m_entities[3];

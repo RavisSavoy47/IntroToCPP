@@ -13,7 +13,7 @@ Scene::~Scene()
 
 bool Scene::getStarted()
 {
-	return false;
+	return m_started;
 }
 
 /// <summary>
@@ -85,7 +85,7 @@ void Scene::start()
 
 /// <summary>
 /// Calls update for every actor in the scene. Calls start for the actor if it hasn't been called.
-/// </summary>
+/// <summary>
 void Scene::update()
 {
 	for (int i = 0; i < m_actorCount; i++)
@@ -104,7 +104,7 @@ void Scene::draw()
 {
 	for (int i = 0; i < m_actorCount; i++)
 	{
-		m_actors[i]->draw;
+		m_actors[i]->draw();
 	}
 }
 
@@ -115,6 +115,6 @@ void Scene::end()
 {
 	for (int i = 0; i < m_actorCount; i++)
 	{
-		m_actors[i]->end;
+		m_actors[i]->end();
 	}
 }

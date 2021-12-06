@@ -40,8 +40,8 @@ void Engine::update()
 //Draws the fighters
 void Engine::draw()
 {
-	m_currentFighter1->printStats();
-	m_currentFighter2->printStats();
+	//m_currentFighter1->printStats();
+	//m_currentFighter2->printStats();
 	system("pause");
 	system("cls");
 }
