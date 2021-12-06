@@ -3,7 +3,10 @@
 class Actor 
 {
 public:
+	Actor();
+	~Actor();
 	Actor(const char* name) { m_name = name; }
+	
 
 	virtual void start() {m_started = true};
 	virtual void update() {};

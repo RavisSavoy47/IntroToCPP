@@ -1,32 +1,20 @@
-#include "Engine.h"
-#include <iostream>
+#include "SimulationManager.h"
 
-bool Engine::m_applicationShouldClose = false;
-Engine::Engine()
+bool SimulationManager::m_applicationShouldClose = false;
+SimulationManager::SimulationManager()
 {
 	m_applicationShouldClose = false;
-	
+	m_entityCount = 0;
+	m_currentFighterIndex = 0;
 }
 
-Engine::~Engine()
+SimulationManager::~SimulationManager()
 {
-	
+	delete m_currentFighter1;
+	delete m_currentFighter2;
 }
 
-void Engine::run()
-{
-	start();
-
-	while (!getApplicationShouldClose())
-	{
-		update();
-		draw();
-	}
-
-	end();
-}
-
-void Engine::start()
+void SimulationManager::start()
 {
 	//initlize the entities
 	Entity wompus = Entity('W', 100, 52, 15);
@@ -47,7 +35,7 @@ void Engine::start()
 	m_currentFighterIndex = 2;
 }
 
-void Engine::update()
+void SimulationManager::update()
 {
 	//Checks if fighter 1 died
 	if (m_currentFighter1->getHealth() <= 0 && m_currentFighterIndex < m_entityCount)
@@ -70,18 +58,4 @@ void Engine::update()
 
 	m_currentFighter1->attack(m_currentFighter2);
 	m_currentFighter2->attack(m_currentFighter1);
-}
-
-//Draws the fighters
-void Engine::draw()
-{
-	m_currentFighter1->printStats();
-	m_currentFighter2->printStats();
-	system("pause");
-	system("cls");
-}
-
-void Engine::end()
-{
-
 }
