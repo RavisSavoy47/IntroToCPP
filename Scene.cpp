@@ -3,12 +3,12 @@
 Scene::Scene()
 {
 	m_actorCount = 0;
-	m_actors[m_actorCount];
+	m_actors = ActorArray();
 }
 
 Scene::~Scene()
 {
-	delete[] m_actors;
+	
 }
 
 bool Scene::getStarted()
@@ -21,21 +21,7 @@ bool Scene::getStarted()
 /// </summary>
 void Scene::addActor(Actor* actor)
 {
-	//Create a new temp arary larger than the current one
-	Actor** tempArray = new Actor* [m_actorCount + 1];
-
-	//Copy all values from old array into the temp array
-	for (int i = 0; i < m_actorCount; i++)
-	{
-		tempArray = m_actors;
-	}
-
-	//Add the new actor to the end of the new array
-	tempArray[m_actorCount] = actor;
-
-	//Set the old array to be the new array
-	m_actors = tempArray;
-	m_actorCount++;
+	return m_actors.addActor(actor);
 }
 
 /// <summary>
@@ -43,37 +29,7 @@ void Scene::addActor(Actor* actor)
 /// </summary>
 bool Scene::removeActor(Actor* actor)
 {
-	//Create a variable to store if the removal was successful
-	bool actorRemoved = false;
-
-	//Create a new temp arary smaller than the current one
-	Actor** tempArray = new Actor* [m_actorCount - 1];
-
-	//Copy all values except the actor we dont want into the new array
-	int j = 0;
-	for (int i = 0; i < m_actorCount - 1; i++)
-	{
-		//If the actor that the loop is on is not the temp array counter
-		if (m_actors[i] != actor)
-		{
-			//..adds the actor into the new array and increments the tmep array counter
-			tempArray[j] = m_actors[i];
-			j++;
-		}
-		//Otherwise if the actor is the one to remove...
-		else
-		{
-			//..set actorRemove to true
-			actorRemoved = true;
-		}		
-	}
-	//If the actorRemove was successful them
-	if (actorRemoved)
-		//Add the new array to the old array
-		m_actors = tempArray;
-
-	m_actorCount--;
-	return actorRemoved;
+	return m_actors.removeActor(actor);
 }
 
 /// <summary>
@@ -88,12 +44,12 @@ void Scene::start()
 /// <summary>
 void Scene::update()
 {
-	for (int i = 0; i < m_actorCount; i++)
+	for (int i = 0; i < m_actors.getLength; i++)
 	{
-		if (!m_started)
-			m_actors[i]->start();
+		if (m_actors.getActor(i)->getStarted())
+			m_actors.getActor(i)->start();
 
-		m_actors[i]->update();
+		m_actors.getActor(i)->update();
 	}
 }
 
